@@ -1,0 +1,14 @@
+version: "3.9"
+
+services:
+  onlinestore-liquibase:
+    container_name: onlinestore-liquibase
+    image: liquibase/liquibase
+    command: --url=jdbc:postgresql://onlinestore-db:5432/store_db?user=store_user&password=123456 --changeLogFile=changelog.xml update
+    volumes:
+      - ./config/changelog.xml:/liquibase/changelog.xml
+      - ./scripts:/liquibase/scripts
+    networks:
+      - online-store-network
+networks:
+  online-store-network:

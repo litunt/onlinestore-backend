@@ -1,0 +1,32 @@
+host.base.url: https://localhost:3030
+
+server:
+  port: 3030
+  servlet.session.cookie:
+    name: onlinestore
+    path: /
+    httpOnly: true
+    secure: false
+
+#spring.jpa.hibernate.ddl-auto=update
+spring:
+  application:
+    name: OnlineStore
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/store_db?user=store_user&password=123456&serverTimezone=UTC&useSSL=false
+    username: store_user
+    password: 123456
+    hikari:
+      auto-commit: false
+      maximum-pool-size: 1
+  security:
+    user:
+      password: password
+      name: user
+  banner: banner.txt
+  sql:
+    init:
+      mode: always
+      platform: postgresql
