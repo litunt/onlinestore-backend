@@ -15,7 +15,7 @@ spring:
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/store_db?user=store_user&password=123456&serverTimezone=UTC&useSSL=false
+    url: jdbc:postgresql://onlinestore-db:5432/store_db?user=store_user&password=123456&serverTimezone=UTC&useSSL=false
     username: store_user
     password: 123456
     hikari:
@@ -29,4 +29,4 @@ spring:
   sql:
     init:
       mode: always
-      platform: postgresql
+      platform: org.hibernate.dialect.PostgreSQLDialect

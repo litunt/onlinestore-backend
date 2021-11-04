@@ -1,0 +1,35 @@
+version: "3.9"
+
+volumes:
+  postgres-onlinestore-data:
+
+services:
+  onlinestore-app:
+    image: 'docker-spring-boot-postgres:latest'
+    build:
+      context: ..
+    container_name: onlinestore_app
+    depends_on:
+      - onlinestore-db
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://onlinestore-db:5432/store_db?user=store_user&password=123456&serverTimezone=UTC&useSSL=false
+      - SPRING_DATASOURCE_USERNAME=store_user
+      - SPRING_DATASOURCE_PASSWORD=123456
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+  onlinestore-db:
+    image: postgres:11-alpine
+    container_name: store_db
+    environment:
+      - POSTGRES_DB=store_db
+      - POSTGRES_USER=store_user
+      - POSTGRES_PASSWORD=123456
+    volumes:
+      - postgres-onlinestore-data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    expose:
+      - 5432
+    networks:
+      - online-store-network
+networks:
+  online-store-network:
