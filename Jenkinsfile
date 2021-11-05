@@ -5,6 +5,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo "Starting to build Online Store Application!"
+                sh "chmod +x gradlew"
                 sh './gradlew clean build'
                 sh 'docker build -t online-store-image .'
             }
