@@ -8,11 +8,13 @@ CREATE SEQUENCE IF NOT EXISTS order_id_seq START 1;
 
 CREATE SEQUENCE IF NOT EXISTS user_id_seq START 1;
 
+CREATE SEQUENCE IF NOT EXISTS user_credentials_id_seq START 1;
+
 CREATE SEQUENCE IF NOT EXISTS cart_item_id_seq START 1;
 
 CREATE SEQUENCE IF NOT EXISTS order_item_id_seq START 1;
 
-CREATE TYPE ORDER_STATUS AS ENUM ('CREATED', 'PROCESSING', 'SHIPPED', 'COMPLETED');
+CREATE TYPE IF NOT EXISTS ORDER_STATUS AS ENUM ('CREATED', 'PROCESSING', 'SHIPPED', 'COMPLETED');
 
 CREATE TABLE store_user
 (
@@ -25,10 +27,11 @@ CREATE TABLE store_user
 
 CREATE TABLE user_credentials
 (
-    user_id  INTEGER      NOT NULL,
-    username VARCHAR(50)  NOT NULL,
-    password VARCHAR(128) NOT NULL,
-    CONSTRAINT pk_credentials PRIMARY KEY (user_id, username),
+    id       INTEGER DEFAULT nextval('user_credentials_id_seq') NOT NULL,
+    user_id  INTEGER                                            NOT NULL,
+    username VARCHAR(50)                                        NOT NULL,
+    password VARCHAR(128)                                       NOT NULL,
+    CONSTRAINT pk_credentials PRIMARY KEY (id, user_id, username),
     CONSTRAINT fk_user_id_credentials FOREIGN KEY (user_id) REFERENCES store_user (id)
 );
 
