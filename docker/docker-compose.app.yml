@@ -7,9 +7,9 @@ services:
       context: ..
     container_name: onlinestore_app
     ports:
-      - "8080:8080"
+      - "3030:8080"
     expose:
-      - 8080
+      - 3030
     environment:
       - SPRING_DATASOURCE_URL=jdbc:postgresql://onlinestore-db:5432/store_db?user=store_user&password=123456&serverTimezone=UTC&useSSL=false
       - SPRING_DATASOURCE_USERNAME=store_user
