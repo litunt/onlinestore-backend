@@ -17,8 +17,10 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                sh 'ssh ec2-user@ec2-54-165-116-214.compute-1.amazonaws.com <<EOF'
-                echo 'Connected to EC2'
+                sshagent(credentials : ['1403bea3-1417-4a36-8210-32236b30aafe']) {
+                    sh 'ssh -o StrictHostKeyChecking=no ec2-user@ec2-54-165-116-214.compute-1.amazonaws.com uptime'
+                    echo 'Connected to EC2'
+                }
             }
 //             steps {
 //                 sh 'ssh -i "aws_ssh.pem" ec2-user@ec2-52-91-194-30.compute-1.amazonaws.com'
