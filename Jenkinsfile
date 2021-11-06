@@ -1,13 +1,15 @@
 pipeline {
-    agent any
-
+    def remote = [:]
+        remote.name = 'ec2-user@ec2-52-91-194-30.compute-1.amazonaws.com'
+        remote.host = 'ec2-52-91-194-30.compute-1.amazonaws.com'
+        remote.user = 'ec2-user'
+        remote.allowAnyHosts = true
     stages {
         stage('Build') {
             steps {
                 echo "Starting to build Online Store Application!"
-                sh "chmod +x gradlew"
-                sh './gradlew clean build'
-                sh 'docker build -t online-store-image .'
+//                 sh "chmod +x gradlew"
+//                 sh './gradlew clean build'
             }
         }
         stage('Test') {
@@ -16,11 +18,14 @@ pipeline {
             }
         }
         stage('Deploy') {
-            steps {
-                sh 'docker-compose -f docker/docker-compose.postgres.yml up'
-                sh 'docker-compose -f docker/docker-compose.liquibase.yml up'
-                sh 'docker-compose -f docker/docker-compose.app.yml up'
-            }
+            sshScript remote: remote, script: "docker-run.sh"
+//             steps {
+//                 sh 'ssh -i "aws_ssh.pem" ec2-user@ec2-52-91-194-30.compute-1.amazonaws.com'
+//                 sh 'docker build -t online-store-image .'
+//                 sh 'docker-compose -f docker/docker-compose.postgres.yml up'
+//                 sh 'docker-compose -f docker/docker-compose.liquibase.yml up'
+//                 sh 'docker-compose -f docker/docker-compose.app.yml up'
+//             }
         }
     }
 }
