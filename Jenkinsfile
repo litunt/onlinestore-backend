@@ -20,6 +20,7 @@ pipeline {
                 sshagent(credentials : ['1403bea3-1417-4a36-8210-32236b30aafe']) {
                     sh 'ssh -o StrictHostKeyChecking=no ec2-user@ec2-54-165-116-214.compute-1.amazonaws.com uptime'
                     echo 'Connected to EC2'
+                    sh 'bash docker-run.sh'
                 }
             }
 //             steps {
