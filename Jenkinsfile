@@ -1,9 +1,3 @@
-def remote = [:]
-remote.name = 'ec2-user@ec2-52-91-194-30.compute-1.amazonaws.com'
-remote.host = 'ec2-52-91-194-30.compute-1.amazonaws.com'
-remote.user = 'ec2-user'
-remote.allowAnyHosts = true
-
 pipeline {
 
     agent any
@@ -24,9 +18,14 @@ pipeline {
         stage('Deploy') {
             steps {
                 script {
-                    aws_ssh
+                    def remote = [:]
+                    remote.name = 'ec2-user@ec2-52-91-194-30.compute-1.amazonaws.com'
+                    remote.host = 'ec2-52-91-194-30.compute-1.amazonaws.com'
+                    remote.user = 'ec2-user'
+                    remote.allowAnyHosts = true
+
+                    sshScript remote: remote, script: 'docker-run.sh'
                 }
-                sshScript remote: remote, script: 'docker-run.sh'
             }
 //             steps {
 //                 sh 'ssh -i "aws_ssh.pem" ec2-user@ec2-52-91-194-30.compute-1.amazonaws.com'
