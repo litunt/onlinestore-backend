@@ -5,6 +5,9 @@ def remote = [:]
         remote.allowAnyHosts = true
 
 pipeline {
+
+    agent any
+    
     stages {
         stage('Build') {
             steps {
