@@ -17,15 +17,8 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                script {
-                    def remote = [:]
-                    remote.name = 'ec2-user@ec2-52-91-194-30.compute-1.amazonaws.com'
-                    remote.host = 'ec2-52-91-194-30.compute-1.amazonaws.com'
-                    remote.user = 'ec2-user'
-                    remote.allowAnyHosts = true
-
-                    sshScript remote: remote, script: 'docker-run.sh'
-                }
+                sh 'ssh ec2-user@ec2-54-165-116-214.compute-1.amazonaws.com <<EOF'
+                echo 'Connected to EC2'
             }
 //             steps {
 //                 sh 'ssh -i "aws_ssh.pem" ec2-user@ec2-52-91-194-30.compute-1.amazonaws.com'
