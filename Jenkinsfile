@@ -1,9 +1,10 @@
-pipeline {
-    def remote = [:]
+def remote = [:]
         remote.name = 'ec2-user@ec2-52-91-194-30.compute-1.amazonaws.com'
         remote.host = 'ec2-52-91-194-30.compute-1.amazonaws.com'
         remote.user = 'ec2-user'
         remote.allowAnyHosts = true
+
+pipeline {
     stages {
         stage('Build') {
             steps {
