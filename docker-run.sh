@@ -1,4 +1,4 @@
-echo "Docker build deploy"
+echo 'Docker build deploy'
 #docker build -t online-store-image .
 #cd docker
 #docker-compose -f docker-compose.postgres.yml up

@@ -11,14 +11,14 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                echo "Starting to build Online Store Application!"
+                echo 'Starting to build Online Store Application!'
 //                 sh "chmod +x gradlew"
 //                 sh './gradlew clean build'
             }
         }
         stage('Test') {
             steps {
-                echo "Running tests...."
+                echo 'Running tests....'
             }
         }
         stage('Deploy') {
@@ -26,7 +26,7 @@ pipeline {
                 script {
                     aws_ssh
                 }
-                sshScript remote: remote, script: "docker-run.sh"
+                sshScript remote: remote, script: 'docker-run.sh'
             }
 //             steps {
 //                 sh 'ssh -i "aws_ssh.pem" ec2-user@ec2-52-91-194-30.compute-1.amazonaws.com'
