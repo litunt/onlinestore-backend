@@ -19,7 +19,9 @@ pipeline {
             }
         }
         stage('Deploy') {
-            sshScript remote: remote, script: "docker-run.sh"
+            steps {
+                sshScript remote: remote, script: "docker-run.sh"
+            }
 //             steps {
 //                 sh 'ssh -i "aws_ssh.pem" ec2-user@ec2-52-91-194-30.compute-1.amazonaws.com'
 //                 sh 'docker build -t online-store-image .'
