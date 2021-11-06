@@ -6,8 +6,8 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Starting to build Online Store Application!'
-//                 sh "chmod +x gradlew"
-//                 sh './gradlew clean build'
+                sh "chmod +x gradlew"
+                sh './gradlew clean build'
             }
         }
         stage('Test') {
