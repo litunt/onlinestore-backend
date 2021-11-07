@@ -1,5 +1,7 @@
 package com.online.store.dto;
 
+import com.online.store.dto.item.OrderItemDTO;
+import com.online.store.utils.OrderStatus;
 import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -19,7 +21,7 @@ public class OrderDTO {
     private long userId;
 
     @NotNull
-    private String status;
+    private OrderStatus status;
 
     @NotNull
     @DateTimeFormat(pattern = "dd.MM.yyyy HH:mm")

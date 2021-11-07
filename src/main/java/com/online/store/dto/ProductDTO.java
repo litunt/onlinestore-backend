@@ -1,5 +1,7 @@
 package com.online.store.dto;
 
+import com.online.store.utils.PetType;
+import com.online.store.utils.ProductCategory;
 import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -14,6 +16,15 @@ public class ProductDTO {
 
     @NotNull
     private String name;
+
+    @NotNull
+    private PetType petType;
+
+    @NotNull
+    private ProductCategory category;
+
+    @NotNull
+    private String description;
 
     private double price;
 

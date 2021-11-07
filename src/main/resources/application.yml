@@ -1,4 +1,5 @@
-host.base.url: http://ec2-3-84-50-67.compute-1.amazonaws.com:3030
+#host.base.url: http://ec2-3-84-50-67.compute-1.amazonaws.com:3030
+host.base.url: https://localhost:3030
 
 server:
   port: 3030

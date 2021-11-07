@@ -23,6 +23,6 @@ public class StoreUser {
     @Column(name = "reg_date")
     private LocalDateTime regDate;
 
-    @Column(name = "is_active")
-    private Integer isActive;
+    @Column(name = "is_active", columnDefinition = "BIT", length = 1)
+    private Boolean isActive;
 }

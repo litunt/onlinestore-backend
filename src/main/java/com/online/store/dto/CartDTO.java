@@ -1,5 +1,6 @@
 package com.online.store.dto;
 
+import com.online.store.dto.item.CartItemDTO;
 import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
