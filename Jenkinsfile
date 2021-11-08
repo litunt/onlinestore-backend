@@ -26,13 +26,6 @@ pipeline {
                     sh 'docker-compose -f docker/docker-compose.app.yml up -d'
                 }
             }
-//             steps {
-//                 sh 'ssh -i "aws_ssh.pem" ec2-user@ec2-52-91-194-30.compute-1.amazonaws.com'
-//                 sh 'docker build -t online-store-image .'
-//                 sh 'docker-compose -f docker/docker-compose.postgres.yml up'
-//                 sh 'docker-compose -f docker/docker-compose.liquibase.yml up'
-//                 sh 'docker-compose -f docker/docker-compose.app.yml up'
-//             }
         }
     }
 }
