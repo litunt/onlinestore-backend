@@ -14,8 +14,6 @@ CREATE SEQUENCE IF NOT EXISTS cart_item_id_seq START 1;
 
 CREATE SEQUENCE IF NOT EXISTS order_item_id_seq START 1;
 
-CREATE TYPE IF NOT EXISTS ORDER_STATUS AS ENUM ('CREATED', 'PROCESSING', 'SHIPPED', 'COMPLETED');
-
 CREATE TABLE store_user
 (
     id        INTEGER   DEFAULT nextval('user_id_seq') NOT NULL,
@@ -37,10 +35,10 @@ CREATE TABLE user_credentials
 
 CREATE TABLE store_order
 (
-    id      BIGINT       DEFAULT nextval('order_id_seq') NOT NULL,
-    user_id INTEGER                                      NOT NULL,
-    status  ORDER_STATUS DEFAULT 'CREATED'               NOT NULL,
-    created TIMESTAMP    DEFAULT CURRENT_TIMESTAMP       NOT NULL,
+    id      BIGINT      DEFAULT nextval('order_id_seq') NOT NULL,
+    user_id INTEGER                                     NOT NULL,
+    status  VARCHAR(18) DEFAULT 'CREATED'               NOT NULL,
+    created TIMESTAMP   DEFAULT CURRENT_TIMESTAMP       NOT NULL,
     CONSTRAINT pk_order PRIMARY KEY (id),
     CONSTRAINT fk_user_id_order FOREIGN KEY (user_id) REFERENCES store_user (id)
 );
@@ -50,6 +48,9 @@ CREATE TABLE product
 (
     id               BIGINT DEFAULT nextval('product_id_seq') NOT NULL,
     name             VARCHAR(50)                              NOT NULL,
+    pet_type         VARCHAR(10)                              NOT NULL,
+    category         VARCHAR(24)                              NOT NULL,
+    description      TEXT   DEFAULT 'No description'          NOT NULL,
     price            NUMERIC(5, 2)                            NOT NULL,
     amount_available INTEGER                                  NOT NULL,
     CONSTRAINT pk_product PRIMARY KEY (id)
