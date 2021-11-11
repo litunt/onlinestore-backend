@@ -18,11 +18,13 @@ public class ProductController {
 
     @GetMapping()
     public List<ProductDTO> getProductsByCategory(@RequestParam @NotNull String category,
-                                                                  @RequestParam String petType,
-                                                                  @RequestParam(defaultValue = "0") Integer page,
-                                                                  @RequestParam(defaultValue = "4") Integer size) throws ApiException {
+                                                  @RequestParam String petType,
+                                                  @RequestParam(defaultValue = "0") Integer page,
+                                                  @RequestParam(defaultValue = "4") Integer size,
+                                                  @RequestParam(defaultValue = "price") String sortBy,
+                                                  @RequestParam(defaultValue = "asc") String sortDir) throws ApiException {
         try {
-            return productService.getProductByCategory(category, petType, page, size);
+            return productService.getProductByCategory(category, petType, page, size, sortBy, sortDir);
         } catch (Exception ex) {
             throw new ApiException("Could not retrieve products!");
         }

@@ -86,7 +86,7 @@ public class CartControllerTest {
     }
 
     private List<CartItemDTO> generateCartItems() {
-        List<ProductDTO> products = productService.getProductByCategory("TOYS", "CAT", 0, 2);
+        List<ProductDTO> products = productService.getProductByCategory("TOYS", "CAT", 0, 2, "price", "asc");
         List<CartItemDTO> items = new ArrayList<>();
         for (ProductDTO product : products) {
             CartItemDTO item = new CartItemDTO();

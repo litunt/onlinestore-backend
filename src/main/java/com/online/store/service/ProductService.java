@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -24,9 +25,12 @@ public class ProductService {
     @Autowired
     private ProductTransformer productTransformer;
 
+    private static final String ASC = "asc";
+    private static final String DESC = "desc";
+
     @Transactional
-    public List<ProductDTO> getProductByCategory(String category, String petType, Integer page, Integer size) {
-        Pageable pageWithElements = PageRequest.of(page, size);
+    public List<ProductDTO> getProductByCategory(String category, String petType, Integer page, Integer size, String sortBy, String sortDir) {
+        Pageable pageWithElements = createPageable(page, size, sortBy, sortDir);
         ProductCategory categoryEnum = ProductCategory.valueOf(category);
         Page<Product> products;
         if (!petType.isEmpty()) {
@@ -46,5 +50,15 @@ public class ProductService {
     public long countProductsByCategory(String category) {
         ProductCategory categoryEnum = ProductCategory.valueOf(category);
         return productRepository.countAllByCategory(categoryEnum);
+    }
+
+    private Pageable createPageable(Integer page, Integer size, String sortBy, String sortDir) {
+        Sort sort = Sort.by(sortBy);
+        if (sortDir.equals(ASC)) {
+            sort = sort.ascending();
+        } else if (sortDir.equals(DESC)){
+            sort = sort.descending();
+        }
+        return PageRequest.of(page, size, sort);
     }
 }
