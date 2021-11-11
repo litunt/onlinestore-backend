@@ -19,6 +19,9 @@ public class StoreUserDTO {
     private String name;
 
     @NotNull
+    private String username;
+
+    @NotNull
     @DateTimeFormat(pattern = "dd.MM.yyyy HH:mm")
     private LocalDateTime regDate;
 

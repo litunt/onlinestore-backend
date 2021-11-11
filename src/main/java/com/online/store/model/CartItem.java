@@ -2,6 +2,7 @@ package com.online.store.model;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 
@@ -18,6 +19,7 @@ public class CartItem {
 
     @ManyToOne
     @JoinColumn(name = "cart_id", nullable = false)
+    @Cascade(org.hibernate.annotations.CascadeType.ALL)
     private Cart cart;
 
     @OneToOne

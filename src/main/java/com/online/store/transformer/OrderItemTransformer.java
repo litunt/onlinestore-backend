@@ -30,6 +30,7 @@ public class OrderItemTransformer {
         OrderItemDTO dto = new OrderItemDTO();
         dto.setItemId(entity.getId());
         dto.setQuantity(entity.getQuantity());
+        dto.setContainerId(entity.getOrder().getId());
         dto.setProduct(productTransformer.entityToDto(entity.getProduct()));
         return dto;
     }

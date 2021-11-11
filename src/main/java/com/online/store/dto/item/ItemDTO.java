@@ -10,9 +10,9 @@ import lombok.NoArgsConstructor;
 @Data
 public class ItemDTO {
 
-    long itemId;
+    Long itemId;
 
-    long containerId;
+    Long containerId;
 
     ProductDTO product;
 

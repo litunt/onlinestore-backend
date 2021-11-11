@@ -17,7 +17,7 @@ CREATE TABLE store_user
     id        INTEGER   DEFAULT nextval('user_id_seq') NOT NULL,
     name      VARCHAR(50)                              NOT NULL,
     reg_date  TIMESTAMP DEFAULT CURRENT_TIMESTAMP      NOT NULL,
-    is_active BIT(1)    DEFAULT 1                      NOT NULL,
+    is_active BOOLEAN   DEFAULT TRUE                   NOT NULL,
     CONSTRAINT pk_user PRIMARY KEY (id)
 );
 
@@ -113,3 +113,12 @@ VALUES ('Cloud Print Hoodie', 'CAT', 'CLOTHING', 'Warm and comfy hoodie with a h
 INSERT INTO product (name, pet_type, category, description, price, amount_available)
 VALUES ('Neon Pink Rain Coat', 'CAT', 'CLOTHING',
         'Extra bright rain coat for comfortable outdoor walks in any weather.', 34.19, 58);
+
+INSERT INTO product (name, pet_type, category, description, price, amount_available)
+VALUES ('Mr. Avo', 'DOG', 'TOYS', 'Cute avocado shaped toy for your playful dog.', 4.39, 200);
+
+INSERT INTO product (name, pet_type, category, description, price, amount_available)
+VALUES ('Cartoon Chicken Chew Toy', 'DOG', 'TOYS', 'Chicken shaped gum toy for dogs.', 11.28, 123);
+
+INSERT INTO product (name, pet_type, category, description, price, amount_available)
+VALUES ('Yellow Bite Rope', 'DOG', 'TOYS', 'Braided bite rope for dogs with knot.', 14.35, 58);

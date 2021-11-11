@@ -16,9 +16,9 @@ import java.util.List;
 @AllArgsConstructor
 public class OrderDTO {
 
-    private long orderId;
+    private Long orderId;
 
-    private long userId;
+    private Long userId;
 
     @NotNull
     private OrderStatus status;

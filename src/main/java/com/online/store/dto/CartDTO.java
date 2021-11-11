@@ -15,11 +15,9 @@ import java.util.List;
 @AllArgsConstructor
 public class CartDTO {
 
-    @NotNull
-    private long cartId;
+    private Long cartId;
 
-    @NotNull
-    private long userId;
+    private Long userId;
 
     @NotNull
     @DateTimeFormat(pattern = "dd.MM.yyyy HH:mm")
