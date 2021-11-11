@@ -18,6 +18,5 @@ services:
       - SPRING_JPA_HIBERNATE_DDL_AUTO=update
     networks:
       - online-store-network
-    command: java -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005 -jar online-store-app.jar
 networks:
   online-store-network:
