@@ -35,7 +35,7 @@ public class AuthenticationService {
         return null;
     }
 
-    public String register(UserRegistrationDTO registration) {
+    public StoreUserDTO register(UserRegistrationDTO registration) {
         StoreUser storeUser = new StoreUser();
         storeUser.setName(registration.getFullName());
         storeUser.setRegDate(LocalDateTime.now());
@@ -47,6 +47,6 @@ public class AuthenticationService {
         credentials.setUsername(registration.getUsername());
         credentials.setUser(storeUser);
         credentialsRepository.save(credentials);
-        return "Success";
+        return storeUserTransformer.entityToDto(storeUser);
     }
 }

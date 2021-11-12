@@ -31,7 +31,7 @@ public class AuthController {
     }
 
     @PostMapping(path = "/register")
-    public String register(@RequestBody UserRegistrationDTO userRegistration) {
+    public StoreUserDTO register(@RequestBody UserRegistrationDTO userRegistration) {
         try {
             return authenticationService.register(userRegistration);
         } catch (Exception ex) {
